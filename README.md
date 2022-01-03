@@ -71,3 +71,23 @@ App.defaultProps = {
   price: 1000,
 };
 ```
+
+## useEffect
+
+- 関数コンポーネント内で副作用を実行するための Hook。副作用とは関数コンポーネントの出力（描画）に関係ない処理のこと。つまり useEffect でレンダリングと副作用を切り離すことができる。
+
+```javascript
+useEffect(() => {
+  console.log('This is like componentDidMound or componentDidUpdate.');
+});
+
+// 第２引数に空配列[]を渡すと最初のレンダリングのみで実行される
+useEffect(() => {
+  console.log('This is like componentDidMound');
+}, []);
+
+// 第２引数の配列に着目したい要素を入力すると、その要素に変更があったときのみ再実行される
+useEffect(() => {
+  console.log('This callback is for name only');
+}, [name]);
+```
