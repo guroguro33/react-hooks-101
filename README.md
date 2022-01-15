@@ -91,3 +91,43 @@ useEffect(() => {
   console.log('This callback is for name only');
 }, [name]);
 ```
+
+## useReducer
+- 多少複雑な状態管理を行う際に使用する
+- dispatchを呼び出して値をreducerファイルのactionに渡す
+- reducerファイルで渡した値を処理
+- returnで返したものがstateに入り帰ってくる
+
+```javascript
+import reducer from '../reducers'; // reducerファイルを読み込む
+
+const App = () => {
+  const [state, dispatch] = useReducer(reducer, []); // 第３引数は省略できる
+
+const addEvent = e => {
+    e.preventDefault();
+    dispatch({
+      type: 'CREATE_EVENT',
+      title,
+      body
+    })
+```
+```javascript
+const events = (state = [], action) => {
+  switch (action.type) {
+    case 'CREATE_EVENT':
+      const event = {title: action.title, body: action.body};
+      const length = state.length;
+      const id = length === 0 ? 1 : state[length - 1].id + 1;
+      return [...state, {id, ...event}]; // id:idの場合、idでまとめられる
+    case 'DELETE_EVENT':
+      return state.filter(event => event.id !== action.id);
+    case 'DELETE_ALL_EVENTS':
+      return [];
+    default:
+      return state;
+  }
+}
+
+export default events;
+```
