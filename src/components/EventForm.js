@@ -1,12 +1,11 @@
-import React, { useReducer, useState } from 'react';
+import React, { useState } from 'react';
 
-import reducer from '../reducers';
-const EventForm = () => {
-  const [state, dispatch] = useReducer(reducer, []); // 第３引数は省略できる
+const EventForm = ({state, dispatch}) => { // App.jsからpropsとして受け取る
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
   const addEvent = e => {
+
     e.preventDefault();
     dispatch({
       type: 'CREATE_EVENT',
