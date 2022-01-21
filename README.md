@@ -91,3 +91,6 @@ useEffect(() => {
   console.log('This callback is for name only');
 }, [name]);
 ```
+
+## useContext
+
