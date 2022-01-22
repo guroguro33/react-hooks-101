@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import EventForm from './EventForm';
 import Events from './Events';
+import AppContext from '../contexts/AppContext';
 import reducer from '../reducers';
 
 const App = () => {
@@ -10,10 +11,12 @@ const App = () => {
 
     // stateとdispatchはpropsとして各コンポーネントに渡す
     return (
-      <div className='container-fluid'>
-        <EventForm state={state} dispatch={dispatch}/>
-        <Events state={state} dispatch={dispatch} />
-      </div>
+      <AppContext.Provider value={'Hello, I am a provider.'}>
+        <div className='container-fluid'>
+          <EventForm state={state} dispatch={dispatch}/>
+          <Events state={state} dispatch={dispatch} />
+        </div>
+      </AppContext.Provider>
     );
 };
 

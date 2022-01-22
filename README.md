@@ -92,5 +92,30 @@ useEffect(() => {
 }, [name]);
 ```
 
-## useContext
+## コンテキスト（以前のやり方）
 
+> コンテキストは各階層で手動でプロパティを下に渡すことなく、コンポーネントツリー内でデータを渡す方法を提供します。
+
+### Context.Provider
+- 親コンポーネントに記述して、子コンポーネントに渡す
+```javascript
+<MyContext.Provider value={/* 何らかの値 */}>
+```
+### Context.Consumer
+- 子コンポーネントに記述して、親コンポーネントから受け取る
+```javascript
+<MyContext.Consumer>
+  {value => /* コンテクストの値に基づいて何かをレンダーします */} // コールバック関数でJSXを返す
+</MyContext.Consumer>
+```
+
+## useContext
+- Context.Consumerの代わりにProviderから受け取りが可能
+```javascript
+import React, { useContext } from 'react';
+import AppContext from '../contexts/AppContext';
+
+  // 要素内部
+  const value = useContext(AppContext);
+
+```
