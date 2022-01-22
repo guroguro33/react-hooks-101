@@ -112,10 +112,15 @@ useEffect(() => {
 ## useContext
 - Context.Consumerの代わりにProviderから受け取りが可能
 ```javascript
+// App.js
+<AppContext.Provider value={{ state, dispatch }}>
+  // JSX
+<AppContext.Provider value={{ state, dispatch }}>
+
+// 子コンポーネント
 import React, { useContext } from 'react';
 import AppContext from '../contexts/AppContext';
 
   // 要素内部
-  const value = useContext(AppContext);
-
+  const {state, dispatch} = useContext(AppContext);
 ```
