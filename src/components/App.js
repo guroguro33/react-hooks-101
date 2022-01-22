@@ -6,15 +6,17 @@ import Events from './Events';
 import AppContext from '../contexts/AppContext';
 import reducer from '../reducers';
 
+
 const App = () => {
   const [state, dispatch] = useReducer(reducer, []); // 第３引数は省略できる
+    console.log({state, dispatch})
 
-    // stateとdispatchはpropsとして各コンポーネントに渡す
+    // stateとdispatchはコンテキストのproviderとして各コンポーネントに渡す
     return (
-      <AppContext.Provider value={'Hello, I am a provider.'}>
+      <AppContext.Provider value={{ state, dispatch }}>
         <div className='container-fluid'>
-          <EventForm state={state} dispatch={dispatch}/>
-          <Events state={state} dispatch={dispatch} />
+          <EventForm />
+          <Events />
         </div>
       </AppContext.Provider>
     );
