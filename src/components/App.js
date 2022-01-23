@@ -9,7 +9,6 @@ import reducer from '../reducers';
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, []); // 第３引数は省略できる
-    console.log({state, dispatch})
 
     // stateとdispatchはコンテキストのproviderとして各コンポーネントに渡す
     return (
