@@ -8,7 +8,10 @@ import reducer from '../reducers';
 
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, []); // 第３引数は省略できる
+  const initialState = {
+      events : []
+  }
+  const [state, dispatch] = useReducer(reducer, initialState); // 第３引数は省略できる
 
     // stateとdispatchはコンテキストのproviderとして各コンポーネントに渡す
     return (
