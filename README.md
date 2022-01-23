@@ -92,8 +92,43 @@ useEffect(() => {
 }, [name]);
 ```
 
-## コンテキスト（以前のやり方）
+## useReducer
+- 処理を加えた複雑な状態管理を行うために使用する
+- reducerファイルを作成し、それをAppコンポーネントで呼び出して使用する
+```javascript
+// src/reducers/index.js
+const events = (state = [], action) => {
+  switch (action.type) {
+    case CREATE_EVENT:
+      const event = {title: action.title, body: action.body};
+      const length = state.length;
+      const id = length === 0 ? 1 : state[length - 1].id + 1;
+      return [...state, {id, ...event}]; // id:idの場合、idでまとめられる
+    case DELETE_EVENT:
+      return state.filter(event => event.id !== action.id);
+    case DELETE_ALL_EVENTS:
+      return [];
+    default:
+      return state;
+  }
+}
 
+export default events;
+
+// src/components/App.js
+import reducer from '../reducers';
+
+const App = () => {
+  const [state, dispatch] = useReducer(reducer, []); // 第３引数は省略できる
+}
+```
+
+### combineReducers
+- 複数のstateを結合させ、ひとつのstateとして扱うための方法（Redux）
+- Reduxパッケージが必要
+
+## コンテキスト（以前のやり方）
+- propのバケツリレーをしないための方法
 > コンテキストは各階層で手動でプロパティを下に渡すことなく、コンポーネントツリー内でデータを渡す方法を提供します。
 
 ### Context.Provider
